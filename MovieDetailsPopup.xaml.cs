@@ -1,9 +1,9 @@
-namespace MauiAppMovies;
 using CommunityToolkit.Maui.Views;
 using MauiAppMovies.Models;
 using System.Collections.ObjectModel;
 using System.Net.Http.Json;
 using System.Windows.Input;
+namespace MauiAppMovies;
 
 public partial class MovieDetailsPopup : Popup
 {
@@ -24,7 +24,8 @@ public partial class MovieDetailsPopup : Popup
             Genres.Add(genres.Where(g => g.id == id).Select(g => g.name).FirstOrDefault());
         }
         BindingContext = this;
-
         InitializeComponent();
-	}
+
+    }
+
 }

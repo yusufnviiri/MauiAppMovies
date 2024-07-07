@@ -14,7 +14,7 @@
                 <VerticalStackLayout.GestureRecognizers>
                     <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding ChooseGenres}"/>
                 </VerticalStackLayout.GestureRecognizers>
-            <Label Text="Genres:" FontSize="10" TextColor="Green"/>
+            <Label Text="Genres:" FontSize="20" TextColor="Green"/>
             <FlexLayout BindableLayout.ItemsSource="{Binding Genres}" JustifyContent="SpaceEvenly" Wrap="Wrap">
                     <BindableLayout.ItemTemplate>
                         <DataTemplate>

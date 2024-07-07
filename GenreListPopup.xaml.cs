@@ -3,7 +3,6 @@ using MauiAppMovies.Models;
 using System.Collections.ObjectModel;
 using System.Net.Http.Json;
 using System.Windows.Input;
-
 namespace MauiAppMovies;
 
 public partial class GenreListPopup : Popup
@@ -16,9 +15,8 @@ public partial class GenreListPopup : Popup
         BindingContext = this;
         this.Genres = new ObservableCollection<UserGenre>(Genres);
         ResultWhenUserTapsOutsideOfPopup = _selectionHasChanged;
-
         InitializeComponent();
-	}
+    }
 
 
     private void CollectionView_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -38,9 +36,10 @@ public partial class GenreListPopup : Popup
         }
     }
 
-    private void Button_Clicked(object sender, EventArgs e) { 
-Close(_selectionHasChanged);
-}
+    private void Button_Clicked(object sender, EventArgs e)
+    {
+        Close(_selectionHasChanged);
+    }
 
 
 }

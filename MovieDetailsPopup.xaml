@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<?xml version="1.0" encoding="utf-8" ?>
 <mct:Popup xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
 xmlns:mct="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-Size="600,600"
- x:Class="MauiAppMovies.MovieDetailsPopup">
-
+           x:Class="MauiAppMovies.MovieDetailsPopup"
+Size="600,600">
     <VerticalStackLayout Padding="20"
 Spacing="20">
         <Image Source="{Binding PosterUrl}"
@@ -20,7 +18,7 @@ Text="{Binding Rating, StringFormat='{0:N1} ⭐'}"/>
         <FlexLayout BindableLayout.ItemsSource="{Binding Genres}" 
 JustifyContent="SpaceEvenly"
 Wrap="Wrap">
-            <Label Text="{Binding .}"/> 
+            <Label Text="{Binding .}"/>
         </FlexLayout>
         <Label Text="{Binding Description}"/>
     </VerticalStackLayout>
