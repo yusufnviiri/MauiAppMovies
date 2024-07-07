@@ -1,7 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Name="MoviePage"
              x:Class="MauiAppMovies.MainPage">
+
 
     <VerticalStackLayout Spacing="10" Padding="30">
         <Border Stroke="Black"
@@ -35,15 +37,15 @@ Wrap="Wrap" >
                     <DataTemplate>
                         <VerticalStackLayout WidthRequest="300" Margin="30" Spacing="10">
                             <VerticalStackLayout.GestureRecognizers>
-                                <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding ShowMovies}"/>
+                              <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding Source={x:Reference MoviePage}, Path=ShowMovies}" CommandParameter ="{Binding .}"/>
                             </VerticalStackLayout.GestureRecognizers>
                             <Image Source="{Binding poster_path}"
                                    Aspect="AspectFit" >
                                 <Image.Shadow>
                                     <Shadow Brush="Black"
-                                            Opacity="0.6"
+                                            Opacity="0.8"
                                             Offset="5,5"
-                                            Radius="20"/>
+                                            Radius="10"/>
                                 </Image.Shadow>
                             </Image>
                             <HorizontalStackLayout>
@@ -53,7 +55,7 @@ Wrap="Wrap" >
                                        LineBreakMode="TailTruncation"/>
                                 <Label HorizontalOptions="EndAndExpand"
                                        HorizontalTextAlignment="End" WidthRequest="50"
-                                       Text="{Binding vote_average, StringFormat='{0:N1}^^ ' }"/>
+                                       Text="{Binding vote_average, StringFormat='{0:N1}* ' }"/>
                             </HorizontalStackLayout>
                             
                         </VerticalStackLayout>

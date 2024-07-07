@@ -1,4 +1,5 @@
-﻿using MauiAppMovies.Models;
+﻿using CommunityToolkit.Maui.Views;
+using MauiAppMovies.Models;
 using System.Collections.ObjectModel;
 using System.Net.Http.Json;
 using System.Windows.Input;
@@ -10,8 +11,7 @@ namespace MauiAppMovies
         string apiKey = "63ff67fb44d6b922e7b92ac62c6188b1";
         string movieUri = "https://api.themoviedb.org/3/";
         string imageBaseUri = "https://image.tmdb.org/t/p/w500";
-        public ICommand ChooseGenres;
-        public ICommand ShowMovies;
+        public ICommand ShowMovies => new Command <MovieResult>((movie) => ShowMovieDetails(movie)); 
         List<UserGenre> genreList { get; set; } = new();
 
         private TrendingMovies movieList;
@@ -20,6 +20,7 @@ namespace MauiAppMovies
         public ObservableCollection<MovieResult> Movies { get; set; } = new();
         public bool IsLoading { get; set; }
         private readonly HttpClient httpClient;
+        public ICommand ChooseGenres => new Command(async () => await ShowGenreList());
 
         public MainPage()
         {
@@ -72,9 +73,36 @@ namespace MauiAppMovies
                 }
                 }
         }
+        private void ShowMovieDetails(MovieResult movie)
+        {
+            var moviePopup = new MovieDetailsPopup(movie, _genres.genres);
+            this.ShowPopup(moviePopup);
+        }
 
-
-
+        private async Task ShowGenreList()
+        {
+            var genrePopup = new GenreListPopup(genreList); 
+var selected = await this.ShowPopupAsync(genrePopup); 
+if ((bool)selected)
+            {
+                Genres.Clear();
+                foreach (var genre in genreList)
+                {
+                    if (genre.Selected)
+                    {
+                        Genres.Add(new Genre
+                        {
+                            name = genre.name
+                        });
+                    }
+                }
+                LoadFilteredMovies();
+            }
+        }
     }
 
+
+
 }
+
+
