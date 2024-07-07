@@ -3,6 +3,71 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MauiAppMovies.MainPage">
 
- 
+    <VerticalStackLayout Spacing="10" Padding="30">
+        <Border Stroke="Black"
+                StrokeThickness="4"
+                StrokeShape="RoundRectangle 5">
+
+        <VerticalStackLayout Padding="20">
+                <VerticalStackLayout.GestureRecognizers>
+                    <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding ChooseGenres}"/>
+                </VerticalStackLayout.GestureRecognizers>
+            <Label Text="Genres:" FontSize="10" TextColor="Green"/>
+            <FlexLayout BindableLayout.ItemsSource="{Binding Genres}" JustifyContent="SpaceEvenly" Wrap="Wrap">
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate>
+                            <Border Stroke="CadetBlue"
+                                       StrokeShape="RoundRectangle 15">
+                                <Label Text="{Binding name}"
+                                       TextColor="Wheat" Padding="10" BackgroundColor="CadetBlue"/>
+                                </Border>
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                
+            </FlexLayout>
+            </VerticalStackLayout>
+        </Border>
+
+        <ScrollView>
+            <FlexLayout BindableLayout.ItemsSource="{Binding Movies}" JustifyContent="SpaceBetween"
+Wrap="Wrap" >
+                <BindableLayout.ItemTemplate>
+                    <DataTemplate>
+                        <VerticalStackLayout WidthRequest="300" Margin="30" Spacing="10">
+                            <VerticalStackLayout.GestureRecognizers>
+                                <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding ShowMovies}"/>
+                            </VerticalStackLayout.GestureRecognizers>
+                            <Image Source="{Binding poster_path}"
+                                   Aspect="AspectFit" >
+                                <Image.Shadow>
+                                    <Shadow Brush="Black"
+                                            Opacity="0.6"
+                                            Offset="5,5"
+                                            Radius="20"/>
+                                </Image.Shadow>
+                            </Image>
+                            <HorizontalStackLayout>
+                                <Label Text="{Binding title}"
+                                       FontAttributes="Bold"
+                                       WidthRequest="150"
+                                       LineBreakMode="TailTruncation"/>
+                                <Label HorizontalOptions="EndAndExpand"
+                                       HorizontalTextAlignment="End" WidthRequest="50"
+                                       Text="{Binding vote_average, StringFormat='{0:N1}^^ ' }"/>
+                            </HorizontalStackLayout>
+                            
+                        </VerticalStackLayout>
+                        
+                        
+                        
+                        
+                    </DataTemplate>
+                </BindableLayout.ItemTemplate>  
+                
+                
+            </FlexLayout>
+        </ScrollView>
+
+    </VerticalStackLayout>
 
 </ContentPage>
